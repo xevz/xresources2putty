@@ -2,6 +2,8 @@
 BUILDING
 ========
 
+Edit config.mk if needed.
+
 Build the software:
 
 $ make
