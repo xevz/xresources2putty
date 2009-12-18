@@ -1,0 +1,5 @@
+src/xdefaults2putty
+*.o
+*~
+.*.swp
+

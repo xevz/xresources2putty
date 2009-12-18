@@ -1,0 +1,37 @@
+{
+   Xlib-XrmGetResource-uninitialized-value-4-bytes
+   Memcheck:Value4
+   obj:/usr/lib/libX11.so.6.2.0
+   obj:/usr/lib/libX11.so.6.2.0
+   fun:XrmQGetResource
+   fun:XrmGetResource
+   fun:parse_file
+   fun:main
+}
+{
+   Xlib-XrmGetResource-uninitialized-value
+   Memcheck:Cond
+   obj:/usr/lib/libX11.so.6.2.0
+   obj:/usr/lib/libX11.so.6.2.0
+   fun:XrmQGetResource
+   fun:XrmGetResource
+   fun:parse_file
+   fun:main
+}
+{
+   Xlib-XrmGetFileDatabase-realloc
+   Memcheck:Leak
+   fun:realloc
+   obj:/usr/lib/libX11.so.6.2.0
+   obj:/usr/lib/libX11.so.6.2.0
+   obj:/usr/lib/libX11.so.6.2.0
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.2.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+
