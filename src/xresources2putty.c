@@ -157,7 +157,6 @@ void generate_registry(char **sessions, int session_count) {
 
 int main(int argc, char *argv[]) {
 	int i, j, session_count;
-	const char *progname;
 	char *tok = NULL;
 
 	char *input = NULL;
@@ -172,8 +171,8 @@ int main(int argc, char *argv[]) {
 
 	session_count = 0;
 
-	progname = *argv;
-	argc--; *argv++;
+	(void)argc--;
+	(void)*argv++;
 
 	if (argc < 5) {
 		usage();
@@ -222,7 +221,9 @@ int main(int argc, char *argv[]) {
 		input = (char *)malloc(strlen(*argv) + 1);
 
 		strncpy(input, *argv, strlen(*argv) + 1);
-		argc--; *argv++;
+		
+		(void)argc--;
+		(void)*argv++;
 	} else {
 		fprintf(stderr, "You need to define a input file.\n");
 		return 1;
@@ -233,7 +234,6 @@ int main(int argc, char *argv[]) {
 		output = (char *)malloc(strlen(*argv) + 1);
 
 		strncpy(output, *argv, strlen(*argv) + 1);
-		argc--; *argv++;
 	}
 
 	/* Main program */
