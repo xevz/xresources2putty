@@ -1,4 +1,3 @@
-========
 BUILDING
 ========
 
@@ -6,22 +5,21 @@ Edit config.mk if needed.
 
 Build the software:
 
-$ make
+    $ make
 
 Build with debug symbols:
 
-$ make debug
+    $ make debug
 
 Regenerate literal_colors.h:
 
-$ make literal_colors
+    $ make literal_colors
 
-=======
 RUNNING
 =======
 
 Using the XTerm class and $HOME/.Xdefaults, for PuTTY sessions
 "default" and "server":
 
-xresources2putty -class XTerm -sessions default,server $HOME/.Xdefaults
+    $ xresources2putty -class XTerm -sessions default,server $HOME/.Xdefaults
 
