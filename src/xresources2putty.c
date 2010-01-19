@@ -11,6 +11,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <errno.h>
 
 #include <X11/Xresource.h>
 
@@ -53,9 +57,9 @@ struct xres colors[] = {
 #define BLUE(c)   (c        & 0xff)
 
 void usage() {
-	(void)fprintf(stderr, "xdefaults2putty -class CLASS -sessions SESSION[,...] FILE\n");
+	(void)fprintf(stderr, "xdefaults2putty -class CLASS [-sessions SESSION[,...]] FILE\n");
 	(void)fprintf(stderr, "    -class       X resource class (e.g. XTerm)\n");
-	(void)fprintf(stderr, "    -sessions    PuTTY sessions\n");
+	(void)fprintf(stderr, "    -sessions    PuTTY sessions, if not given \"default\" is used\n");
 }
 
 int translate_color(const char *hex_color, int *red, int *green, int *blue) {
@@ -69,6 +73,26 @@ int translate_color(const char *hex_color, int *red, int *green, int *blue) {
 		*blue  = BLUE(color);
 	} else {
 		return -1;
+	}
+
+	return 1;
+}
+
+int check_file(const char *file) {
+	int size;
+	char *name;
+	struct stat st;
+
+	if (stat(file, &st) == -1) {
+		size = strlen(file) + 17 + 1;
+		name = (char *)malloc(size);
+
+		snprintf(name, size, "xdefaults2putty: %s", file);
+		perror(name);
+
+		free(name);
+
+		return 0;
 	}
 
 	return 1;
@@ -156,7 +180,7 @@ void generate_registry(char **sessions, int session_count) {
 }
 
 int main(int argc, char *argv[]) {
-	int i, j, session_count;
+	int i, j, session_count, return_code;
 	char *tok = NULL;
 
 	char *input = NULL;
@@ -170,11 +194,12 @@ int main(int argc, char *argv[]) {
 	*sessions = NULL;
 
 	session_count = 0;
+	return_code   = 0;
 
 	(void)argc--;
 	(void)*argv++;
 
-	if (argc < 5) {
+	if (argc < 3) {
 		usage();
 		return 1;
 	}
@@ -211,22 +236,39 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
+	if (class == NULL) {
+		fprintf(stderr, "You need to define Xresource class.\n");
+
+		return_code = 1;
+		goto cleanup;
+	}
+
+	/* If no PuTTY sessions are defined, fall back to "default" */
 	if (!session_count) {
-		fprintf(stderr, "You need to define a list of sessions.\n");
-		return 1;
+		sessions[0] = (char *)malloc(8);
+
+		strncpy(sessions[0], "default", 8);
+		session_count++;
 	}
 
 	/* Input */
 	if (*argv) {
+		if (!check_file(*argv)) {
+			return_code = 1;
+			goto cleanup;
+		}
+
 		input = (char *)malloc(strlen(*argv) + 1);
 
 		strncpy(input, *argv, strlen(*argv) + 1);
-		
+
 		(void)argc--;
 		(void)*argv++;
 	} else {
 		fprintf(stderr, "You need to define a input file.\n");
-		return 1;
+
+		return_code = 1;
+		goto cleanup;
 	}
 
 	/* Output */
@@ -240,6 +282,7 @@ int main(int argc, char *argv[]) {
 	if (parse_file(input, class))
 		generate_registry(sessions, session_count);
 
+cleanup:
 	/* Clean up */
 	if (input)
 		free(input);
@@ -256,6 +299,6 @@ int main(int argc, char *argv[]) {
 	for (i = 0; i < COLORS_LENGTH; i++)
 		free(colors[i].value);
 
-	return 0;
+	return return_code;
 }
 
