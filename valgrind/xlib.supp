@@ -34,4 +34,529 @@
    fun:parse_file
    fun:main
 }
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Value4
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmQGetResource
+   fun:XrmGetResource
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmQGetResource
+   fun:XrmGetResource
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XrmInternalStringToQuark
+   fun:XrmPermStringToQuark
+   fun:XrmInitialize
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcAddUtf8Converters
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcAddUtf8Converters
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcAddUtf8Converters
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcAddUtf8Converters
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcAddUtf8Converters
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcAddUtf8Converters
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcSetConverter
+   fun:_XlcAddUtf8Converters
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:realloc
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:_XlcCreateLC
+   fun:_XlcDefaultLoader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcAddCharSet
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcCreateDefaultCharSet
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcCreateDefaultCharSet
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XrmInternalStringToQuark
+   fun:XrmPermStringToQuark
+   fun:XrmInitialize
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcCreateLocaleDataBase
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+   fun:parse_file
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_XlcCreateDefaultCharSet
+   fun:_XlcAddCT
+   fun:_XlcInitCTInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:_XlcCreateLC
+   fun:_XlcUtf8Loader
+   fun:_XOpenLC
+   fun:_XrmInitParseInfo
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:XrmGetFileDatabase
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libX11.so.6.3.0
+   fun:_XrmInternalStringToQuark
+   fun:XrmPermStringToQuark
+   fun:XrmInitialize
+   fun:parse_file
+   fun:main
+}
 
