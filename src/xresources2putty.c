@@ -131,10 +131,10 @@ void generate_registry(char **sessions, int session_count) {
 
 	assert(sessions != NULL);
 
-	printf("Windows Registry Editor Version 5.00\n");
+	printf("Windows Registry Editor Version 5.00\r\n\r\n");
 
 	for (i = 0; i < session_count; i++) {
-		printf("\n[HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\Sessions\\%s]\n", sessions[i]);
+		printf("[HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\Sessions\\%s]\r\n", sessions[i]);
 
 		for (index = 0; index < COLORS_LENGTH; index++) {
 			red = 0; green = 0; blue = 0;
@@ -149,7 +149,7 @@ void generate_registry(char **sessions, int session_count) {
 				}
 
 				if (result > -1)
-					printf("\"%s\"=\"%d,%d,%d\"\n", colors[index].putty_name, red, green, blue);
+					printf("\"%s\"=\"%d,%d,%d\"\r\n", colors[index].putty_name, red, green, blue);
 			}
 		}
 	}
