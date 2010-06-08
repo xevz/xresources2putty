@@ -8,7 +8,7 @@
  */
 
 /*
- * Generated using src/generate_literal.pl
+ * Generated using scripts/generate_literal.pl
  */
 
 #ifndef LITERAL_COLORS_H
