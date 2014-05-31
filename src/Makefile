@@ -19,8 +19,8 @@ $(EXECUTABLE): $(OBJS)
 
 .PHONY: install
 install: all
-	$(MKDIR) -p $(BINDIR)
-	$(INSTALL) -m 755 $(EXECUTABLE) $(BINDIR)
+	$(MKDIR) -p $(DESTDIR)$(BINDIR)
+	$(INSTALL) -m 755 $(EXECUTABLE) $(DESTDIR)$(BINDIR)
 
 .PHONY: debug
 debug:
