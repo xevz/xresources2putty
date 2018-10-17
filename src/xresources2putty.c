@@ -16,9 +16,9 @@
 #include <unistd.h>
 #include <errno.h>
 
+#include <X11/Xlib.h>
 #include <X11/Xresource.h>
-
-#include "literal_colors.h"
+#include <X11/Xcms.h>
 
 #define SESSION_DELIM ","
 
@@ -137,15 +137,19 @@ int parse_file(const char *file, char *class) {
 }
 
 long find_color_by_name(const char *name) {
-	int i;
-
 	assert(name != NULL);
 
-	for (i = 0; i < LITERAL_COLORS_LENGTH; i++)
-		if (!strncmp(literal_colors[i].name, name, strlen(name)))
-			return literal_colors[i].color;
+	Display *display = XOpenDisplay(NULL);
 
-	return -1;
+	XColor color;
+	Status ok = XParseColor(display, DefaultColormap(display, 0), name, &color);
+	XCloseDisplay(display);
+
+	if (!ok) {
+		return -1;
+	}
+
+	return ((color.red / 256) << 16) | ((color.green / 256) << 8) | (color.blue / 256);
 }
 
 void generate_registry(char **sessions, int session_count) {

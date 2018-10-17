@@ -10,10 +10,6 @@ install:
 debug:
 	@$(MAKE) -C src debug
 
-.PHONY: literal_colors
-literal_colors:
-	@$(MAKE) -C scripts literal_colors
-
 .PHONY: clean
 clean:
 	@echo Cleaning files
