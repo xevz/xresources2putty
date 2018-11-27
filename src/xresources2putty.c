@@ -15,6 +15,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <errno.h>
+#include <getopt.h>
 
 #include <X11/Xlib.h>
 #include <X11/Xresource.h>
@@ -57,9 +58,15 @@ struct xres colors[] = {
 #define BLUE(c)   (c        & 0xff)
 
 void usage() {
-	(void)fprintf(stderr, "xdefaults2putty -class CLASS [-sessions SESSION[,...]] FILE\n");
-	(void)fprintf(stderr, "    -class       X resource class (e.g. XTerm)\n");
-	(void)fprintf(stderr, "    -sessions    PuTTY sessions, if not given \"default\" is used\n");
+	(void)fprintf(stderr, "Usage: xdefaults2putty [OPTION]...\n");
+	(void)fprintf(stderr, "Parse a Xresources file and print a PuTTY compatible registry file\n");
+
+	(void)fprintf(stderr, "\n");
+
+	(void)fprintf(stderr, "  -h, --help        Displays this message\n");
+	(void)fprintf(stderr, "      --class       X resource class, default: \"XTerm\"\n");
+	(void)fprintf(stderr, "      --file        X resource file, default: \"$HOME/.Xresources\"\n");
+	(void)fprintf(stderr, "      --sessions    PuTTY sessions, default: \"default\"\n");
 }
 
 int translate_color(const char *hex_color, int *red, int *green, int *blue) {
@@ -184,67 +191,60 @@ void generate_registry(char **sessions, int session_count) {
 }
 
 int main(int argc, char *argv[]) {
-	int i, j, session_count, return_code;
-	char *tok = NULL;
+	int session_count, return_code;
 
 	char *input = NULL;
 	char *output = NULL;
-	char *class = NULL;
 	char *sessions[512];
-
-	input = NULL;
-	output = NULL;
-	class = NULL;
-	*sessions = NULL;
+	char xresource_file[512];
+	char class[512];
 
 	session_count = 0;
 	return_code   = 0;
 
-	(void)argc--;
-	(void)*argv++;
+	while (1) {
+		static struct option opts[] = {
+			{"sessions", required_argument, 0, 0},
+			{"file", required_argument, 0, 0},
+			{"class", required_argument, 0, 0},
+			{"help", no_argument, 0, 'h'},
+			{0, 0, 0, 0}
+		};
 
-	if (argc < 3) {
-		usage();
-		return 1;
-	}
+		int index;
+		char c = getopt_long(argc, argv, "h", opts, &index);
 
-	for (i = 0, j = 0; i < argc; i++) {
-		if (strncmp(argv[0], "-class", 6) == 0 && strlen(argv[1]) < 512) {
-			i++;
+		if (c == -1)
+			break;
 
-			class = (char *)malloc(strlen(argv[1]) + 1);
-			memset(class, 0, strlen(argv[1]) + 1);
+		switch (c) {
+			/* Long options */
+			case 0:
+				if (index == 0) {
+					char *tok = strtok(optarg, SESSION_DELIM);
+					int i = 0;
+					while (tok) {
+						sessions[i] = (char *)malloc(strlen(tok) + 1);
+						memset(sessions[i], 0, strlen(tok) + 1);
 
-			strncpy(class, argv[1], strlen(argv[1]));
+						strncpy(sessions[i++], tok, strlen(tok) + 1);
+						session_count++;
 
-			argc -= 2;
-			argv += 2;
+						tok = strtok(NULL, SESSION_DELIM);
+					}
+				} else if (index == 1) {
+					strncpy(xresource_file, optarg, 512);
+				} else if (index == 2) {
+					strncpy(class, optarg, 512);
+				}
+				break;
+			case 'h':
+				usage();
+				return 1;
+			default:
+				printf("Unknown option: %c\n", c);
+				break;
 		}
-
-		if (strncmp(argv[0], "-sessions", 9) == 0 && strlen(argv[1]) < 512) {
-			i++;
-
-			tok = strtok(argv[1], SESSION_DELIM);
-			while (tok != NULL) {
-				sessions[j] = (char *)malloc(strlen(tok) + 1);
-				memset(sessions[j], 0, strlen(tok) + 1);
-
-				strncpy(sessions[j++], tok, strlen(tok) + 1);
-				session_count++;
-
-				tok = strtok(NULL, SESSION_DELIM);
-			}
-
-			argc -= 2;
-			argv += 2;
-		}
-	}
-
-	if (class == NULL) {
-		fprintf(stderr, "You need to define Xresource class.\n");
-
-		return_code = 1;
-		goto cleanup;
 	}
 
 	/* If no PuTTY sessions are defined, fall back to "default" */
@@ -255,52 +255,27 @@ int main(int argc, char *argv[]) {
 		session_count++;
 	}
 
-	/* Input */
-	if (*argv) {
-		if (!check_file(*argv)) {
-			return_code = 1;
-			goto cleanup;
-		}
+	if (!xresource_file[0]) {
+		snprintf(xresource_file, 512, "%s/.Xresources", getenv("HOME"));
+	}
 
-		input = (char *)malloc(strlen(*argv) + 1);
+	if (!class[0]) {
+		strncpy(class, "XTerm", 512);
+	}
 
-		strncpy(input, *argv, strlen(*argv) + 1);
-
-		(void)argc--;
-		(void)*argv++;
-	} else {
-		fprintf(stderr, "You need to define a input file.\n");
-
+	if (!check_file(xresource_file)) {
 		return_code = 1;
 		goto cleanup;
 	}
 
-	/* Output */
-	if (*argv) {
-		output = (char *)malloc(strlen(*argv) + 1);
-
-		strncpy(output, *argv, strlen(*argv) + 1);
-	}
-
-	/* Main program */
-	if (parse_file(input, class))
+	if (parse_file(xresource_file, class))
 		generate_registry(sessions, session_count);
 
 cleanup:
-	/* Clean up */
-	if (input)
-		free(input);
-
-	if (output)
-		free(output);
-
-	if (class)
-		free(class);
-
-	for (i = 0; i < session_count; i++)
+	for (int i = 0; i < session_count; i++)
 		free(sessions[i]);
 
-	for (i = 0; i < COLORS_LENGTH; i++)
+	for (int i = 0; i < COLORS_LENGTH; i++)
 		free(colors[i].value);
 
 	return return_code;
